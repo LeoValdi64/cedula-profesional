@@ -17,7 +17,7 @@ El paquete se registrará automáticamente en Laravel gracias al auto-discovery 
 ### En Laravel
 
 ```php
-use CedulaProfesional\Facades\CedulaProfesional;
+use CedulaProfesional\CedulaProfesional;
 
 // Usando la Facade
 $resultados = CedulaProfesional::buscarCedula(
@@ -56,12 +56,17 @@ $resultados = DatosPersonales::buscarCedula(
 );
 
 // Los resultados se devuelven en un array con la información de las cédulas encontradas
-foreach ($resultados as $cedula) {
-    echo "Número de Cédula: " . $cedula['idCedula'] . "\n";
-    echo "Nombre: " . $cedula['nombre'] . "\n";
-    echo "Título: " . $cedula['titulo'] . "\n";
-    echo "Institución: " . $cedula['desins'] . "\n";
-    echo "Año de registro: " . $cedula['anioreg'] . "\n";
+foreach ($resultados as $index => $resultado) {
+    echo "Resultado #" . ($index + 1) . ":\n";
+    echo "Nombre: " . $resultado['nombre'] . "\n";
+    echo "Apellido Paterno: " . $resultado['paterno'] . "\n";
+    echo "Apellido Materno: " . $resultado['materno'] . "\n";
+    echo "Cédula: " . $resultado['idCedula'] . "\n";
+    echo "Institución: " . $resultado['desins'] . "\n";
+    echo "Título: " . $resultado['titulo'] . "\n";
+    echo "Año de registro: " . $resultado['anioreg'] . "\n";
+    echo "Tipo: " . $resultado['tipo'] . "\n";
+    echo "------------------------\n";
 }
 ```
 
@@ -76,7 +81,7 @@ Cada resultado contiene la siguiente información:
 - `titulo`: Título profesional
 - `desins`: Institución educativa
 - `anioreg`: Año de registro
-- `tipo`: Tipo de cédula (cuando aplica)
+- `tipo`: Tipo de cédula
 
 ## Requisitos
 
